@@ -41,7 +41,7 @@ class PostController extends Controller
 
         // データ登録
         $rules = [
-            'posts' => 'required|max:140',
+            'postContent' => 'required|max:140',
         ];
         $messages = ['required' => '必須項目です', 'max' => '140文字以下にしてください。'];
 

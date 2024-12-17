@@ -14,7 +14,7 @@
 <body class="">
     <x-header></x-header>
     <div class="page post-page">
-        @error('posts')
+        @error('postContent')
         <div class="mt-3">
             <p class="text-red-500">
                 {{ $message }}

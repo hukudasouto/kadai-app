@@ -130,9 +130,16 @@ class PostController extends Controller
             return redirect('/');
         }
 
+        $loginUser = Session::get('user');
+        $user = $post->user();
+        if ($loginUser->id != $user->id) {
+            return redirect('/home');
+        }
+
         // データ登録
         $post->content = $request->postContent;
         $post->save();
+
 
         // 画面表示
         return redirect('/post/detail/' . $post->id);

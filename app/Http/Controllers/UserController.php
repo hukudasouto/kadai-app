@@ -122,7 +122,10 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //TODO 登録処理
+        $rules = [
+            'email' => 'required|email|alpha_num',
+        ];
+        $messages = ['required' => '必須項目です',];
 
         return redirect('/');
     }

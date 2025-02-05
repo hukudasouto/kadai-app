@@ -13,23 +13,37 @@
 
 <body class="">
     <x-header></x-header>
-    <div class="page singup-page">
-        <form class="form" action="/singup" method="post">
+    <div class="page signup-page">
+        <form class="form" action="/signup" method="post">
             @csrf
             <div class="form-item email">
                 <label for="email">Email</label>
                 <input type="text" id="email" name="email" />
             </div>
+            @error('email')
+            <div class="mt-3">
+                <p class="text-red-500">
+                    {{ $message }}
+                </p>
+            </div>
+            @enderror
             <div class="form-item password">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" />
             </div>
-
-
-
-
-            <div class="singup-button">
-                <button class="button-white" type="submit">singup</button>
+            @error('password')
+            <div class="mt-3">
+                <p class="text-red-500">
+                    {{ $message }}
+                </p>
+            </div>
+            @enderror
+            <div class="form-item name">
+                <label for="name">name</label>
+                <input type="name" id="name" name="name" />
+            </div>
+            <div class="signup-button">
+                <button class="button-white" type="submit">signup</button>
             </div>
         </form>
     </div>

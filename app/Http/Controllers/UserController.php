@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller,
     Session;
+use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 
 class UserController extends Controller
@@ -123,10 +124,30 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'email' => 'required|email|alpha_num',
+            'email' => 'required|email:rfc',
+            'password' => 'required|min:8',
         ];
-        $messages = ['required' => '必須項目です',];
+        $messages = [
+            'required' => '必須項目です',
+            'email' => '●●●@×××の形式にしてください',
+            'min' => '８文字以上にしてください'
+        ];
 
+
+        Validator::make($request->all(), $rules, $messages)->validate();
+        $user = new user;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+
+        $user->save();
+
+
+
+
+
+
+        Session::put('user', $user);
         return redirect('/');
     }
 }
